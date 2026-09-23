@@ -1,5 +1,5 @@
 const fs=require('fs'), vm=require('vm');
-const RACINE='/home/user/portfolio/';
+const RACINE=require('path').join(__dirname,'..')+'/';
 
 function creerEnv(search, page, memPartagee){
   const store = { 'bt_panier_v1': localStorage0 };
@@ -314,12 +314,12 @@ const T=(n,f)=>{ try{ const r=f(); console.log((r===false?'✗':'✓')+' '+n); r
     const h = env.getEl('pdp').innerHTML;
     if(!h.includes('← Précédent') || !h.includes('Suivant →')) throw new Error('barre absente');
     if(!h.includes('class="sib-c"') || !h.includes(' / 7')) throw new Error('position absente');
-    const liens = (h.match(/ecommerce-produit\.html\?p=[a-z0-9-]+/g)||[]);
+    const liens = (h.match(/produit\.html\?p=[a-z0-9-]+/g)||[]);
     if(liens.length < 2) throw new Error('liens précédent/suivant absents');
     return true; });
   T('fiche : la barre mène à de vrais produits', ()=>{
     const h = env.getEl('pdp').innerHTML;
-    const refs = (h.match(/ecommerce-produit\.html\?p=([a-z0-9-]+)/g)||[]).map(x=>x.split('=')[1]);
+    const refs = (h.match(/produit\.html\?p=([a-z0-9-]+)/g)||[]).map(x=>x.split('=')[1]);
     if(new Set(refs).size !== 2) throw new Error('slugs identiques');
     return true; });
 }

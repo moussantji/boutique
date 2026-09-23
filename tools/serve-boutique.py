@@ -6,16 +6,15 @@ serve-boutique.py — Petit serveur de prévisualisation de la boutique.
     python3 tools/serve-boutique.py            # http://localhost:8001
     python3 tools/serve-boutique.py --port 9000
 
-Différence avec `python3 -m http.server` lancé à la racine du dépôt :
-    la racine « / » ouvre directement la boutique (index.html)
-    au lieu du portfolio, et les autres pages sont accessibles en un clic :
+Sert le dépôt boutique ; toutes les pages sont accessibles en un clic :
 
-        /                        → accueil boutique (redirige)
-        /index.html      → accueil boutique
+        /                        → accueil boutique (index.html)
         /produits.html           → catalogue (filtres, tri, pagination)
-        /produit.html?p=... → fiche produit
-        /panier.html   → panier + commande
-        /index.html              → portfolio (site principal)
+        /produit.html?p=...      → fiche produit
+        /panier.html             → panier + commande
+        /compte.html             → espace client
+        /suivi.html              → suivi de commande
+        /admin.html              → administration (démo)
 
 Aucune dépendance : bibliothèque standard uniquement.
 """
@@ -33,7 +32,9 @@ PAGES = [
     ("/produits.html", "Catalogue (filtres, tri, pagination)"),
     ("/produit.html?p=telephone-mobile-4g", "Fiche produit"),
     ("/panier.html", "Panier + commande"),
-    ("/index.html", "Portfolio (site principal)"),
+    ("/compte.html", "Espace client"),
+    ("/suivi.html", "Suivi de commande"),
+    ("/admin.html", "Administration (démo)"),
 ]
 
 
